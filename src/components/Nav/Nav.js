@@ -1,23 +1,23 @@
 import React from "react";
 
-const Nav = () => (
-  
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary flex-row d-flex justify-content-around W-100">
-  
-    <ul className="nav">
-      <li className="nav-item  text-light">
-        <h2  href="/">Star Wars Click Memory Game</h2>
-      </li>
-      <li className="nav-item text-light">
-      <h3>You guessed correctly!</h3>
-      </li>
-      <li className="nav-item text-light">
-      <h3> Score: 0 | Top Score: 0</h3>
-      </li>
-    </ul>
-   
+const Nav = props => (
+
+  <nav class="nav nav-pills nav-fill bg-primary">
+
+        <h2 className="nav-item  text-light" href="/">Star Wars Click Memory Game</h2>
+      
+      
+        <h3 className="nav-item  text-light">{props.message}</h3>
+     
+     
+        <h3 className="nav-item  text-light"> Score: {props.score}</h3>  
+      
+      
+        <h3 className="nav-item  text-light">Top Score: {props.topScore}</h3> 
+      
+    
   </nav>
-  
+
 );
 
 export default Nav;

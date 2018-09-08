@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
+
 import friends from "./friends.json";
 import Nav from "./components/Nav";
 import "./App.css";
@@ -15,7 +15,8 @@ class App extends Component {
       friends: this.shuffleArray(friends),
       clickedCards: friends,
       score: 0,
-      topScore: 0
+      topScore: 0,
+      message: "Click Images to Start!"
     };
 
   }
@@ -39,7 +40,6 @@ class App extends Component {
   
 
   checkCards = id => {
-    console.log("Pre-Cards "+this.state.score);
     //put conditional here?
     const Cards = this.state.clickedCards;
     const obj = Cards.find(function (obj) { return obj.id === id; });
@@ -57,30 +57,50 @@ return this.handleDecrement();
   };
   
   handleIncrement = () => {
-
-    this.setState({ score: this.state.score + 1 });
-    console.log(this.state.score);
+    this.setState({ score: this.state.score + 1,
+    message: "You guessed correctly!"
+    });
+   
   };
 
   handleDecrement = () => {
     const topScore = this.state.score;
-    this.setState({ topScore});
-    console.log(this.state.topScore);
-    console.log(this.state.score);
+    const score = 0;
+
+if(topScore > this.state.topScore){
+    this.setState({ topScore,
+    score: score});
+    this.handleReset();
+} else {
+   this.setState({ score: score });
+   this.handleReset();
+}
+
   };
 
+
+
+
+  handleReset = () => {
+    const clickedCards = this.state.friends;
+    this.setState({ clickedCards });
+  };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
       <div>
-        <Nav />
+        <Nav
+        score={this.state.score}
+        topScore={this.state.topScore}
+        message={this.state.message}
+        />
         <Wrapper>
-          <Title>Friends List</Title>
+          
           {this.state.friends.map(friend => (
+            
             <FriendCard
               onClicked={this.onClicked}
-              
               id={friend.id}
               key={friend.id}
               name={friend.name}
@@ -88,6 +108,7 @@ return this.handleDecrement();
               occupation={friend.occupation}
               homeworld={friend.homeworld}
             />
+          
           ))}
         </Wrapper>
       </div>
