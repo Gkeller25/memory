@@ -45,7 +45,6 @@ class App extends Component {
     const obj = Cards.find(function (obj) { return obj.id === id; });
     
 if(obj !== undefined){
-    console.log(obj);
     // Filter this.state.friends for friends with an id not equal to the id being removed
     const clickedCards = this.state.clickedCards.filter(clickedCard => clickedCard.id !== id);
     // Set this.state.friends equal to the new friends array
@@ -69,10 +68,14 @@ return this.handleDecrement();
 
 if(topScore > this.state.topScore){
     this.setState({ topScore,
-    score: score});
+    score: score,
+    message: "Already guessed, Start Over!"
+  });
     this.handleReset();
 } else {
-   this.setState({ score: score });
+   this.setState({ score: score,
+    message: "Already guessed, Start Over!"
+   });
    this.handleReset();
 }
 

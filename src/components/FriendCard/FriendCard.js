@@ -3,10 +3,10 @@ import "./FriendCard.css";
 
 const FriendCard = props => (
   
-  <div className="card" onClick={() => props.onClicked(props.id)}>
+  <div className="card" onClick={() => props.onClicked(props.id)} style={{ backgroundImage: `url(${props.image})` }}>
     <div className="img-container">
       
-        <img alt={props.name} src={props.image} />
+        {/*<img alt={props.name} src={props.image} />*/}
         
     </div>
     {/*<div className="content">
